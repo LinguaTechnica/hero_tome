@@ -16,6 +16,8 @@ An application that collects hero information and can be used to compare the rel
 - Project Board: https://github.com/LinguaTechnica/hero_tome/projects/1/
 - Visuals and Models: https://drive.google.com/drive/u/0/folders/1SHeop-4BKLoVvruc50GPuIW-wq6Y01u-
 
+![Models](https://i.imgur.com/FKSgcxr.jpg)
+
 1. Sprint 1: Project plan and configuration 
 2. Sprint 2: MVP (least amount of code possible for core feature)
 3. Sprint 3: Design
