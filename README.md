@@ -22,3 +22,17 @@ An application that collects hero information and can be used to compare the rel
 2. Sprint 2: MVP (least amount of code possible for core feature)
 3. Sprint 3: Design
 4. Sprint 4: Final
+
+
+### User Stories
+
+As a guest, I can ...
+- Create a new account
+- Browse all the heroes
+- Search for heroes
+- Compare heroes
+
+As a user, I can ...
+- Login/logout
+- View my account profile
+- Create a list of my favorite heroes
