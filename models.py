@@ -16,7 +16,7 @@ class User(db.Model):
     username = db.Column(db.String(75), nullable=False)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String, nullable=False)
-    favorites = db.relationship('Hero', secondary='favorites_table')
+    favorites = db.relationship('Hero', secondary='favorites')
 
     def __repr__(self):
         return f'<User {self.id} | {self.username}>'
@@ -49,6 +49,7 @@ def connect_to_db(app):
 if __name__ == '__main__':
     from flask import Flask
     app = Flask(__name__)
+
     connect_to_db(app)
     db.create_all()
 
