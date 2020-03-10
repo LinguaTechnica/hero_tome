@@ -1,9 +1,9 @@
-<html>
-<head>
+{%  extends 'base.html' %}
 
-</head>
-<body>
-<a href="/api/user/1">User Profile</a>
-
-</body>
-</html>
+{% block content %}
+<h1>Search</h1>
+<form action="/search" method="post" id="searchForm">
+    <input type="text" name="username">
+    <input type="submit">
+</form>
+{% endblock %}
