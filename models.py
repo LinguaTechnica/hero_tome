@@ -1,5 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
 db = SQLAlchemy()
 
 
@@ -9,7 +12,13 @@ favorites_table = db.Table('favorites',
                            db.Column('hero_id', db.Integer, db.ForeignKey('heroes.id')))
 
 
-class User(db.Model):
+class ModelMixin:
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+class User(ModelMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -21,8 +30,14 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.id} | {self.username}>'
 
+    def create_password(self, password):
+        self.password = generate_password_hash(password)
 
-class Hero(db.Model):
+    def login(self, password):
+        check_password_hash(password, self.password)
+
+
+class Hero(ModelMixin, db.Model):
     __tablename__ = 'heroes'
 
     id = db.Column(db.Integer, primary_key=True)
