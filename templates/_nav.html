@@ -9,9 +9,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
+            {% if not session.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup_form') }}">Signup</a>
+                </li>
+            {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/search" method="post">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
