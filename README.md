@@ -10,6 +10,8 @@ An application that collects hero information and can be used to compare the rel
 * Create a list of favorite heroes
 * Compare hero power to see who's stronger!
 
+for k, v in hero.items()}
+        hero_keys = key_data.keys() & dir(Hero)
 
 ### Planning
 
