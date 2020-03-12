@@ -33,7 +33,7 @@ def signup():
         app.logger.info(f'User {user.id} created. Logging in...')
         session['user_id'] = user.id
 
-    return redirect('heroes/list.html')
+    return redirect('/')
 
 
 @app.route('/users/<int:user_id>')
@@ -52,8 +52,6 @@ def login_form():
 @app.route('/api/auth', methods=['POST'])
 def login():
     user = User.query.filter_by(username=request.form.get('username')).first()
-    app.logger.info('Logging in user ...')
-    app.logger.info(request.form.get('password'))
 
     # Check password
     if user.login(request.form.get('password')):
@@ -64,3 +62,10 @@ def login():
         return render_template('login.html')
 
     return render_template('users/detail.html', user=user)
+
+
+@app.route('/logout')
+def logout():
+    del session['user_id']
+
+    return redirect('/')

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Hero Tome</a>
+    <a class="navbar-brand" href="{{ url_for('index') }}">Hero Tome</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,11 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
-            {% if not session.user %}
+            {% if not session.get('user_id') %}
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login_form') }}">Login</a>
                     <a class="nav-link" href="{{ url_for('signup_form') }}">Signup</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+{#                TODO: Update link to 'profile #}
+                    <a href="{{ url_for('index') }}" class="nav-link">Profile</a>
+                    <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                 </li>
             {% endif %}
         </ul>

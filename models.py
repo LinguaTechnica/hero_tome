@@ -15,11 +15,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-
 # Users' favorite heroes
 favorites_table = db.Table('favorites',
-                        db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-                        db.Column('hero_id', db.Integer, db.ForeignKey('heroes.id')))
+                           db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+                           db.Column('hero_id', db.Integer, db.ForeignKey('heroes.id')))
 
 
 class ModelMixin:
@@ -45,6 +44,9 @@ class User(ModelMixin, db.Model):
 
     def login(self, password):
         return check_password_hash(self.password, password)
+
+    def is_valid_password(self, password):
+        return self.login(self.password, password)
 
 
 class Hero(ModelMixin, db.Model):
