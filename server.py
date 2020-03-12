@@ -7,8 +7,9 @@ if __name__ == '__main__':
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
     connect_to_db(app)
+
     # TODO: Send PR to debugtoolbar for a fix
-    if app.debug:
-        from flask_debugtoolbar import DebugToolbarExtension
-        DebugToolbarExtension(app)
+    # if app.debug:
+    #     from flask_debugtoolbar import DebugToolbarExtension
+    #     DebugToolbarExtension(app)
     app.run()

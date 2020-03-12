@@ -1,19 +1,10 @@
-<form action="/api/signup" method="post" id="signupForm">
+<form action="/api/auth" method="post" id="signupForm">
     <div class="form-group col-md-6">
         <label for="usernameData">Username:</label>
         <input type="text" class="form-control" name="username" id="usernameData"
                aria-describedby="nameHelp" placeholder="username">
         <small id="nameHelp" class="form-text text-muted">
             Enter your username.
-        </small>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="emailData">Email:</label>
-        <input type="email" class="form-control" name="email" id="emailData"
-               aria-describedby="emailHelp" placeholder="email">
-        <small id="emailHelp" class="form-text text-muted">
-            Enter your email address.
         </small>
     </div>
 
@@ -27,14 +18,8 @@
     </div>
 
     <div class="form-group col-md-6">
-        <label for="passwordconfData">Password Confirmation:</label>
-        <input type="password" class="form-control" name="password" id="passwordconfData"
-               aria-describedby="passwordconfHelp" placeholder="Confirm Password">
-        <small id="passwordconfHelp" class="form-text text-muted">
-            Confirm your password by re-entering it here.
-        </small>
-    </div>
-    <div class="form-group col-md-6">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+<a class="button" href="/"></a>

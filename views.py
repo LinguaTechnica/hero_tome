@@ -1,4 +1,6 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, session
+
+from models import User
 
 app = Flask(__name__)
 
@@ -23,6 +25,42 @@ def signup():
     """
     app.logger.info('Creating new user ...')
     user_data = request.form
-    app.logger.info(f'User data: {user_data}')
+
+    if user_data.get('password') == user_data.get('passwordConf'):
+        user = User(**user_data)
+        user.create_password(user_data.get('password'))
+        user.save()
+        app.logger.info(f'User {user.id} created. Logging in...')
+        session['user_id'] = user.id
 
     return redirect('heroes/list.html')
+
+
+@app.route('/users/<int:user_id>')
+def get_user(user_id):
+    user = User.query.get(user_id)
+    app.logger.info(f'Current user: {user}')
+
+    return render_template('users/detail.html', user=user)
+
+
+@app.route('/login')
+def login_form():
+    return render_template('login.html')
+
+
+@app.route('/api/auth', methods=['POST'])
+def login():
+    user = User.query.filter_by(username=request.form.get('username')).first()
+    app.logger.info('Logging in user ...')
+    app.logger.info(request.form.get('password'))
+
+    # Check password
+    if user.login(request.form.get('password')):
+        app.logger.info('Login successful ...')
+        session['user_id'] = user.id
+    else:
+        app.logger.info('Login failed!')
+        return render_template('login.html')
+
+    return render_template('users/detail.html', user=user)

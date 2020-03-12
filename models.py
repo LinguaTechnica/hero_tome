@@ -2,14 +2,24 @@ from flask_sqlalchemy import SQLAlchemy
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import scoped_session, sessionmaker
+# from sqlalchemy.schema import Table
+# from sqlalchemy.ext.declarative import declarative_base
+#
+# engine = create_engine('postgres:///herotome', echo=False)
+# db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+#
+# db = declarative_base()
+# db.query = db_session.query_property()
 
 db = SQLAlchemy()
 
 
 # Users' favorite heroes
 favorites_table = db.Table('favorites',
-                           db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-                           db.Column('hero_id', db.Integer, db.ForeignKey('heroes.id')))
+                        db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+                        db.Column('hero_id', db.Integer, db.ForeignKey('heroes.id')))
 
 
 class ModelMixin:
@@ -34,7 +44,7 @@ class User(ModelMixin, db.Model):
         self.password = generate_password_hash(password)
 
     def login(self, password):
-        check_password_hash(password, self.password)
+        return check_password_hash(self.password, password)
 
 
 class Hero(ModelMixin, db.Model):
@@ -59,13 +69,15 @@ def connect_to_db(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
 
 if __name__ == '__main__':
-    from flask import Flask
-    app = Flask(__name__)
-
-    connect_to_db(app)
-    db.create_all()
+    # from flask import Flask
+    # app = Flask(__name__)
+    #
+    # connect_to_db(app)
+    # db.create_all()
 
     print('Connected to database, tables ready.')
