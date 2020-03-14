@@ -39,6 +39,13 @@ class User(ModelMixin, db.Model):
     def __repr__(self):
         return f'<User {self.id} | {self.username}>'
 
+    def serialize(self):
+        return {
+            "id": self.id, "username": self.username,
+            "email": self.email,
+            "favorites": [fav.serialize() for fav in self.favorites]
+        }
+
     def create_password(self, password):
         self.password = generate_password_hash(password)
 
@@ -46,7 +53,7 @@ class User(ModelMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def is_valid_password(self, password):
-        return self.login(self.password, password)
+        return self.login(password)
 
 
 class Hero(ModelMixin, db.Model):
@@ -64,6 +71,17 @@ class Hero(ModelMixin, db.Model):
     durability = db.Column(db.Integer)
     combat = db.Column(db.Integer)
     speed = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f'<Hero {self.id} | {self.name }'
+
+    def serialize(self):
+        return {
+            'name': self.name, 'alignment': self.alignment, 'race': self.race,
+            'height': self.height, 'weight': self.weight, 'intelligence': self.intelligence,
+            'strength': self.strength, 'power': self.power, 'durability': self.durability,
+            'combat': self.combat, 'speed': self.speed
+        }
 
 
 def connect_to_db(app):
