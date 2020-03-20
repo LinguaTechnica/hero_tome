@@ -27,12 +27,12 @@ An application that collects hero information and can be used to compare the rel
 ### User Stories
 
 As a guest, I can ...
-- [x] Create a new account
-- [ ] Browse all the heroes
+- [x] Create a new account (MVP)
+- [ ] Browse all the heroes (MVP)
 - [ ] Search for heroes
 - [ ] Compare heroes
 
 As a user, I can ...
-- [x] Login/logout
-- [x] View my account profile
+- [x] Login/logout (MVP)
+- [x] View my account profile (MVP)
 - [ ] Create a list of my favorite heroes

@@ -22,6 +22,8 @@ favorites_table = db.Table('favorites',
 
 
 class ModelMixin:
+    # TODO: More utility methods like .get()!
+
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -49,11 +51,8 @@ class User(ModelMixin, db.Model):
     def create_password(self, password):
         self.password = generate_password_hash(password)
 
-    def login(self, password):
-        return check_password_hash(self.password, password)
-
     def is_valid_password(self, password):
-        return self.login(password)
+        check_password_hash(self.password, password)
 
 
 class Hero(ModelMixin, db.Model):
@@ -63,17 +62,17 @@ class Hero(ModelMixin, db.Model):
     name = db.Column(db.String, nullable=False)
     alignment = db.Column(db.String)
     race = db.Column(db.String)
-    height = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
-    intelligence = db.Column(db.Integer)
-    strength = db.Column(db.Integer)
-    power = db.Column(db.Integer)
-    durability = db.Column(db.Integer)
-    combat = db.Column(db.Integer)
-    speed = db.Column(db.Integer)
+    height = db.Column(db.String)
+    weight = db.Column(db.String)
+    intelligence = db.Column(db.String)
+    strength = db.Column(db.String)
+    power = db.Column(db.String)
+    durability = db.Column(db.String)
+    combat = db.Column(db.String)
+    speed = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Hero {self.id} | {self.name }'
+        return f'<Hero {self.id} | {self.name }>'
 
     def serialize(self):
         return {
@@ -94,10 +93,10 @@ def connect_to_db(app):
 
 
 if __name__ == '__main__':
-    # from flask import Flask
-    # app = Flask(__name__)
-    #
-    # connect_to_db(app)
-    # db.create_all()
+    from flask import Flask
+    app = Flask(__name__)
+
+    connect_to_db(app)
+    db.create_all()
 
     print('Connected to database, tables ready.')
