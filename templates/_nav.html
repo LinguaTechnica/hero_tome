@@ -12,13 +12,16 @@
             {% if not session.get('user_id') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login_form') }}">Login</a>
+                </li>
+                <li>
                     <a class="nav-link" href="{{ url_for('signup_form') }}">Signup</a>
                 </li>
             {% else %}
                 <li class="nav-item">
 {#                TODO: Update link to 'profile #}
                     <a href="{{ url_for('index') }}" class="nav-link">Profile</a>
-                    <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                </li>
+                <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                 </li>
             {% endif %}
         </ul>
