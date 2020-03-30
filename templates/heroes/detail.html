@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ hero.name }}{% endblock %}
+
+{% block content %}
+    <img src="https://via.placeholder.com/300?text=Hero+Detail"
+         alt="picture of {{ hero.name }}">
+
+    <ul class="list-group">
+        <li class="list-group-item">Alignment: {{ hero.alignment }}</li>
+        <li class="list-group-item">Height: {{ hero.height }}</li>
+        <li class="list-group-item">Weight: {{ hero.weight }}</li>
+        <li class="list-group-item">Race: {{ hero.race }}</li>
+        <li class="list-group-item">Power: {{ hero.power }}</li>
+        <li class="list-group-item">Strength: {{ hero.strength }}</li>
+        <li class="list-group-item">Intelligence: {{ hero.intelligence }}</li>
+        <li class="list-group-item">Durability: {{ hero.durability }}</li>
+        <li class="list-group-item">Combat: {{ hero.combat }}</li>
+        <li class="list-group-item">Speed: {{ hero.speed }}</li>
+    </ul>
+{% endblock %}

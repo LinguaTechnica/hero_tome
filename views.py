@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, session
 
-from models import User
+from models import User, Hero
 
 app = Flask(__name__)
 
@@ -80,3 +80,13 @@ def get_user(user_id):
 
 
 # Hero Routes
+@app.route('/heroes')
+def hero_list():
+    heroes = Hero.query.all()
+    return render_template('heroes/list.html', heroes=heroes)
+
+
+@app.route('/heroes/<int:hero_id>')
+def hero_detail(hero_id):
+    hero = Hero.query.get(hero_id)
+    return render_template('heroes/detail.html', hero=hero)

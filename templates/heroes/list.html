@@ -1,2 +1,22 @@
 {%  extends 'base.html' %}
-HEROES GO HERE
+
+{% block title %}Heroes{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% for hero in heroes %}
+            <div class="col">
+                <div class="card my-3" style="width: 18rem;">
+                    <img src="https://via.placeholder.com/300?text=Hero"
+                         class="card-img-top"
+                         alt="picture of {{ hero.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ hero.name }}</h5>
+                        <a href="{{ url_for('hero_detail', hero_id=hero.id) }}" class="btn btn-primary">Inspect</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

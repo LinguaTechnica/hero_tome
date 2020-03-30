@@ -9,6 +9,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li>
+                <a href="{{ url_for('hero_list') }}" class="nav-link">Heroes</a>
+            </li>
             {% if not session.get('user_id') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login_form') }}">Login</a>

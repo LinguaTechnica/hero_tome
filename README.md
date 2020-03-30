@@ -28,7 +28,7 @@ An application that collects hero information and can be used to compare the rel
 
 As a guest, I can ...
 - [x] Create a new account (MVP)
-- [ ] Browse all the heroes (MVP)
+- [x] Browse all the heroes (MVP)
 - [ ] Search for heroes
 - [ ] Compare heroes
 
