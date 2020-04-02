@@ -5,7 +5,6 @@ __pycache__/
 .idea
 *.py[cod]
 *$py.class
-data/
 
 # C extensions
 *.so
